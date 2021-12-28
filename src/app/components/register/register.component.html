@@ -1,0 +1,64 @@
+<h1>User register</h1>
+<form [formGroup]="userForm" class="m-3 col-lg-6">
+  <div class="formulario">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" class="form-control" placeholder="Write your name" formControlName="name">
+      <div *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)" class="alert alert-danger">
+        <div *ngIf="nameControl.hasError('required')">
+          The name is required
+        </div>
+        <div *ngIf="nameControl.hasError('minlength')">
+          The name must have 4 or more characters
+        </div>
+      </div>
+  <br>
+  <br>
+
+  <div class="formulario">
+    <label for="surname">Surname</label>
+    <input type="text" id="surname" name="surname" class="form-control" placeholder="Write your surname" formControlName="surname">
+    <div *ngIf="surnameControl.invalid && (surnameControl.dirty || surnameControl.touched)" class="alert alert-danger">
+      <div *ngIf="surnameControl.hasError('required')">
+        The surname is required
+      </div>
+      <div *ngIf="surnameControl.hasError('minlength')">
+        The surname must have 4 or more characters
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <div class="formulario">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Write your email" class="form-control" formControlName="email">
+    <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="alert alert-danger">
+      <div *ngIf="emailControl.hasError('required')">
+        The email is required
+      </div>
+      <div *ngIf="emailControl.hasError('email')">
+        The email must have @ and cannot end with '.'
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <div class="formulario">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Write your password" formControlName="password">
+    <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="alert alert-danger">
+      <div *ngIf="passwordControl.hasError('required')">
+        The password is required
+      </div>
+      <div *ngIf="passwordControl.hasError('minlength')">
+        The password must have 4 or more characters
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <button class="btn-primary boton" (click)="saveData()">Enter</button>
+
+

@@ -1,0 +1,33 @@
+<h1>User login</h1>
+<form [formGroup]="loginForm" class="m-3 col-lg-6">
+  <div class="formulario">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Write your email" class="form-control" formControlName="email">
+    <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="alert alert-danger">
+      <div *ngIf="emailControl.hasError('required')">
+        The email is required
+      </div>
+      <div *ngIf="emailControl.hasError('email')">
+        The email must have @ and cannot end with '.'
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <div class="formulario">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Write your password" formControlName="password">
+    <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="alert alert-danger">
+      <div *ngIf="passwordControl.hasError('required')">
+        The password is required
+      </div>
+      <div *ngIf="passwordControl.hasError('minlength')">
+        The password must have 4 or more characters
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <button class="btn-primary boton" (click)="saveData()">Enter</button>

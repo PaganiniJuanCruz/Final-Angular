@@ -1,0 +1,33 @@
+<!--<h1 class="titulo">Welcome to RocketBuster</h1>
+<div class="movie-container">
+  <div class="card" style="width: 18rem;" *ngFor="let movie of movies">
+    <img src="{{movie.image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">{{movie.description}}</p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+        <br>
+        <br>
+        <a class="btn btn-primary" (click)="navigateToDetail(movie.id)">Description</a>
+    </div>
+  </div>
+</div> -->
+
+<h1 class="titulo">Welcome to RocketBuster</h1>
+<div class="movie-container">
+  <mat-card style="width: 18rem;" *ngFor="let movie of movies">
+    <mat-card-header>
+      <h5 class="card-title">{{movie.title}}</h5>
+    </mat-card-header>
+    <img src="{{movie.image}}" class="card-img-top" alt="...">
+    <mat-card-content>
+      <p class="card-text">{{movie.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a href="#" class="btn btn-primary">Add to cart</a>
+      <br>
+      <br>
+      <a class="btn btn-primary" (click)="navigateToDetail(movie.id)">Description</a>
+    </mat-card-actions>    
+  </mat-card>
+</div>
