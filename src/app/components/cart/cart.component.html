@@ -1,1 +1,24 @@
-<p>cart works!</p>
+<div class="container">
+    <h1 class="mb-4 titulo">My cart</h1>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col" class="estilo-letra">ID</th>
+            <th scope="col" class="estilo-letra">Image</th>
+            <th scope="col" class="estilo-letra">Title</th>
+            <th scope="col" class="estilo-letra">Quantity</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let movie of cartMovies">
+          <th scope="row">{{movie.id}}</th>
+          <td><img [src]="urlPath+movie.poster_path" alt="" class="imagen-carrito"></td>
+          <td><h2>{{movie.title}}</h2></td>
+          <td><input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem"></td>
+          <td><button button type="button" class="btn estilo-letra boton-borrar" (click)="removeItem(movie)">Borrar</button></td>
+      </tr>
+    </table>
+    <button type="button" class="btn m-5 botones boton-cartelera estilo-letra" (click)="returnToBillboard()">Volver a Cartelera</button>
+    <button type="button" class="btn m-5 botones boton-vaciar estilo-letra" (click)="clearCarrito()">Vaciar Carrito</button>
+</div>

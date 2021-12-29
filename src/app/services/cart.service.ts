@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Movie } from '../models/movie.model';
+import { MovieService } from '../features/movies/services/movies.service';
+import { MovieAPI } from '../models/movieAPI.model';
 
 
 @Injectable({
@@ -8,17 +8,41 @@ import { Movie } from '../models/movie.model';
 })
 export class CartService {
 
-  private list: Movie[] = [];
 
-  constructor() { }
+  private listMovie: MovieAPI[] = [];
+
+  constructor(
+    private movieService: MovieService
+  ) { }
+
+  addMovie(movie: MovieAPI){
+    if(!this.listMovie.find(element => element.id === movie.id)){
+      this.listMovie.push(movie)
+    }else{
+      alert("YA AGREGADA!")
+    }
+  }  
   
-  getList(): Observable<Movie[]>{
-    return of(this.list);
+  setList(listMovie: MovieAPI[]){
+    this.listMovie = listMovie;
   }
 
-  addToCart(movie: Movie){
-    this.list.push(movie);
-    console.log(this.list);
+  getList():MovieAPI[]{
+    return this.listMovie;
   }
 
+  clear():MovieAPI[]{
+    return this.listMovie = [];
+  }
+
+  remove(movie: MovieAPI): MovieAPI[] {
+    console.log(movie);
+
+    let index = this.listMovie.indexOf(movie);
+    console.log(index);
+
+    this.listMovie.splice(index,1);
+    console.log(this.listMovie);
+    return this.listMovie;
+  }
 }

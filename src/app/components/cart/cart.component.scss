@@ -1,0 +1,47 @@
+.titulo{
+    text-align: center;
+    font-size: 3rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 60px;
+}
+
+.table{
+    margin: 60px auto;
+}
+
+.item-tabla{
+    font-size: 2rem;
+}
+
+.imagen-carrito{
+    height: 120px;
+}
+
+.botones{
+    font-size: 1rem;
+    width: 20%;
+    height: 80px;
+}
+
+.estilo-letra{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+.boton-cartelera{
+    background-color: rgba(1, 95, 1, 0.623);
+    font-style: italic;
+    color: azure;
+}
+
+.boton-vaciar{
+    font-style: italic;
+    color: azure;
+    background-color: rgb(119, 7, 7);
+}
+
+.boton-borrar{
+    background-color: rgb(179, 58, 58);
+    font-style: italic;
+    color: azure;
+}

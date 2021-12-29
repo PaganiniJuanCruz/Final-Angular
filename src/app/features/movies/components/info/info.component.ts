@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieAPI } from 'src/app/models/movieAPI.model';
+import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from '../../services/movies.service';
 
 
@@ -19,7 +20,9 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   constructor( 
     private activatedRoute: ActivatedRoute,
-    private moviesService: MovieService
+    private moviesService: MovieService,
+    private cartService: CartService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,5 +36,11 @@ export class InfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
+
+  addMovie(movie: MovieAPI){
+    this.cartService.addMovie(movie)
+    this.router.navigate(['cart']);
+  }
+
 }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../services/movies.service';
 import { MovieAPI } from 'src/app/models/movieAPI.model';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
   constructor(
     private movieService: MovieService,
     private router: Router,
+    private cartService: CartService
    ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,12 @@ export class MoviesComponent implements OnInit, OnDestroy {
   navigateToDetail(id: number) {
     this.router.navigate(['movies', id]);
   }
+
+  addMovie(movie: MovieAPI){
+    this.cartService.addMovie(movie)
+    this.router.navigate(['cart']);
+  }
+
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
