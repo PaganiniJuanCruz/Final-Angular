@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Movie } from 'src/app/models/movie.model';
+import { MovieAPI } from 'src/app/models/movieAPI.model';
 import { MovieService } from '../../services/movies.service';
 
 
@@ -12,9 +12,10 @@ import { MovieService } from '../../services/movies.service';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit, OnDestroy {
-  movie: Movie | undefined;
-
+  
+  movie: MovieAPI | any;
   private subscription: Subscription | undefined;
+  urlPath: string = 'https://image.tmdb.org/t/p/w500';
 
   constructor( 
     private activatedRoute: ActivatedRoute,
@@ -22,10 +23,15 @@ export class InfoComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.moviesService.getDetail(this.activatedRoute.snapshot.params['id']).subscribe(movie => console.log(movie));
-  }
+    //this.subscription = this.moviesService.getDetail(this.activatedRoute.snapshot.params['id']).subscribe(movie => console.log(movie));
+    this.moviesService.getDetailAPI(this.activatedRoute.snapshot.params['id'])  //obtiene el id desde la ruta url a la llamada al componente
+    .subscribe(respose => {this.movie = respose
+    console.log(this.movie);
+  });
+}
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 }
+

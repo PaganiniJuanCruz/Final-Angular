@@ -1,15 +1,21 @@
-.movie-container{
-    display: flex;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-left: 40px;
-    margin-right: 40px;
-  }
-  .titulo{
-    display: flex;
-    margin-top: 40px;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-  
+.rocket{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 110px;
+  margin-bottom: 100px;
+  margin-top: 150px;
+}
+
+.info{
+  margin-left: 40px;
+  margin-right: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.card-title{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+}
+
+.carrito{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

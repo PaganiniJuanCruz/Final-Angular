@@ -13,21 +13,20 @@
   </div>
 </div> -->
 
-<h1 class="titulo">Welcome to RocketBuster</h1>
-<div class="movie-container">
-  <mat-card style="width: 18rem;" *ngFor="let movie of movies">
-    <mat-card-header>
-      <h5 class="card-title">{{movie.title}}</h5>
+<div id="billboard"class="conteiner ">
+  <h1 class="pb-3 rocket" style="text-align: center;">RocketBuster</h1>
+  <div class="movie-container d-flex flex-wrap justify-content-center">
+    <mat-card class="example-card m-5" *ngFor="let movie of moviesAPI"  style="width: 18rem;">
+    <mat-card-header style="display: flex; justify-content: center;align-items: center;height: 50px; text-align: center;">
+      <h3 class="card-title" style="font-weight: bolder;">{{movie.title}}</h3>
     </mat-card-header>
-    <img src="{{movie.image}}" class="card-img-top" alt="...">
+    <img mat-card-image [src]= "urlPath+movie.poster_path" alt="" style="height: 400px;">
     <mat-card-content>
-      <p class="card-text">{{movie.description}}</p>
+      <p class="card-text">{{movie.overview}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <a href="#" class="btn btn-primary">Add to cart</a>
-      <br>
-      <br>
-      <a class="btn btn-primary" (click)="navigateToDetail(movie.id)">Description</a>
+      <a href="#" class="btn btn-primary carrito">Add to cart</a>
+      <a class="btn btn-primary info" (click)="navigateToDetail(movie.id)">Description</a>
     </mat-card-actions>    
   </mat-card>
 </div>

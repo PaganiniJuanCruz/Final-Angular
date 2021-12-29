@@ -15,7 +15,13 @@ const routes: Routes = [
   {
     path:'register',
     component: RegisterComponent
+  },
+  {
+    path: '',
+    redirectTo: 'cartelera',
+    pathMatch: 'full'
   }
+  
 ];
 
 @NgModule({
