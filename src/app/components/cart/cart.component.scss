@@ -5,18 +5,6 @@
     margin: 60px;
 }
 
-.table{
-    margin: 60px auto;
-}
-
-.item-tabla{
-    font-size: 2rem;
-}
-
-.imagen-carrito{
-    height: 120px;
-}
-
 .botones{
     font-size: 1rem;
     width: 20%;
@@ -44,4 +32,11 @@
     background-color: rgb(179, 58, 58);
     font-style: italic;
     color: azure;
+    display: flex;
+    justify-content: center;
+}
+
+.imagenes{
+    height: 250px;
+    width: 200px;
 }
