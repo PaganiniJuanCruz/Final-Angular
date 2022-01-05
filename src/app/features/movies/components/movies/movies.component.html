@@ -15,18 +15,19 @@
 
 <div id="billboard" class="conteiner body">
   <h1 class="pb-3 rocket" style="text-align: center;">RocketBuster</h1>
-  <div class="movie-container d-flex flex-wrap justify-content-center">
+  <div class="movie-container">
     <mat-card class="example-card m-5 matt-card" *ngFor="let movie of moviesAPI">
     <mat-card-header class="mat-head">
       <h3 class="card-title" style="font-weight: bolder;">{{movie.title}}</h3>
     </mat-card-header>
     <img mat-card-image [src]="urlPath+movie.poster_path" alt="" class="imagenes">
     <mat-card-content>
-      <p class="card-text">{{movie.overview}}</p>
+      <p class="card-text release">Release Date: {{movie.release_date}}</p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button class="carrito" (click)="navigateToDetail(movie.id)">Description</button>
       <button mat-raised-button class="carrito"(click)="addMovie(movie)">Add to Cart</button>
     </mat-card-actions>    
   </mat-card>
+</div>
 </div>
