@@ -8,7 +8,8 @@ export const environment = {
   urlUsersAPI: 'https://61bcb895d8542f00178249b1.mockapi.io/api/persons',
   keyAPI:'?api_key=d3205dd298d1b900ec260c14e96e1d71',
   urlAPI: 'https://api.themoviedb.org/3/movie/',
-  userRestApi: 'https://61cb6878194ffe0017788d45.mockapi.io/api'
+  userRestApi: 'https://61cb6878194ffe0017788d45.mockapi.io/api',
+  cartRestApi: 'http://localhost:3000/api/cart'
 };
 
 /*

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Movie } from 'src/app/models/movie.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../services/movies.service';
@@ -14,9 +13,12 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class MoviesComponent implements OnInit, OnDestroy {
 
-  private subscription: Subscription | undefined;
-  movies: Movie[] = [];
-  moviesAPI : MovieAPI[] =[];
+  private subscription = new Subscription;
+
+  moviesAPI : MovieAPI[] = [];
+
+  movie!: MovieAPI | any;
+
   urlPath: string = 'https://image.tmdb.org/t/p/w500';
 
   constructor(
@@ -27,21 +29,29 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //traigo un array de la api y las muestro en la consola
-    this.subscription = this.movieService.getListAPI().subscribe(response => {
-      this.moviesAPI = response.results  
+    this.subscription.add(this.movieService.getListAPI().subscribe(resp => {
+      this.moviesAPI = resp.results;
       console.log(this.moviesAPI)
-      });
+      }));
   }
 
+  addMovie(){
+    console.log(this.movie);
+    
+    const id = this.movie.id;
+    const title = this.movie.title;
+    const poster_path = this.movie.poster_path;
+
+    this.cartService.addMovie(id, title, poster_path)
+    .subscribe(resp => {
+      console.log(resp);
+      alert("MOVIE IN CART")
+    });
+  }
+  
   navigateToDetail(id: number) {
     this.router.navigate(['movies', id]);
   }
-
-  addMovie(movie: MovieAPI){
-    this.cartService.addMovie(movie)
-    this.router.navigate(['cart']);
-  }
-
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();

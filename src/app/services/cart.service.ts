@@ -1,41 +1,46 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MovieService } from '../features/movies/services/movies.service';
-import { MovieAPI } from '../models/movieAPI.model';
-
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-
-  private listMovie: MovieAPI[] = [];
-
-  constructor(
-    private movieService: MovieService
-  ) { }
-
-  addMovie(movie: MovieAPI){
-    if(!this.listMovie.find(element => element.id === movie.id)){
-      this.listMovie.push(movie)
-    }else{
-      alert("YA AGREGADA!")
-    }
-  }  
+  url = environment.cartRestApi;
   
-  setList(listMovie: MovieAPI[]){
-    this.listMovie = listMovie;
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  addMovie(id: number, title:string, poster_path:string):Observable<boolean>{
+    return this.httpClient.post<boolean>(this.url,{
+    id,
+    title,
+    poster_path
+    })
+  }
+  
+  getList():Observable<any>{
+    return this.httpClient.get<any[]>(this.url);
   }
 
-  getList():MovieAPI[]{
-    return this.listMovie;
+  removeMovie(id:number):Observable<any>{
+    return this.httpClient.delete<any>(`${this.url}?id=${id}`)
   }
 
-  clear():MovieAPI[]{
-    return this.listMovie = [];
+  clear():Observable<any[]>{
+    return this.httpClient.get<any[]>(`${this.url}/clear`)
   }
+}
 
-  remove(movie: MovieAPI): MovieAPI[] {
+/*clear():MovieAPI[]{
+  return this.listMovie = [];
+}
+*/
+
+/*remove(movie: MovieAPI): MovieAPI[] {
     console.log(movie);
 
     let index = this.listMovie.indexOf(movie);
@@ -45,4 +50,14 @@ export class CartService {
     console.log(this.listMovie);
     return this.listMovie;
   }
-}
+  */
+
+   /*
+  addMovie(movie: MovieAPI){
+    if(!this.listMovie.find(element => element.id === movie.id)){
+      this.listMovie.push(movie)
+    }else{
+      alert("YA AGREGADA!")
+    }
+  }  
+  */

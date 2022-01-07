@@ -4,6 +4,7 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { InfoComponent } from './components/info/info.component';
 import { MoviesRoutingModule } from './movies-routing.module';
 import { MaterialModule } from 'src/app/material/material.module';
+import { CartService } from 'src/app/services/cart.service';
 
 
 

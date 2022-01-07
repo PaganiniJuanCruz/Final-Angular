@@ -2,13 +2,13 @@
     <h1 class="mb-4 titulo">My cart</h1>
 <div id="billboard">
     <div class="d-flex flex-wrap justify-content-center">
-      <mat-card class="example-card m-5 matt-card" *ngFor="let movie of cartMovies">
+      <mat-card class="example-card m-5 matt-card" *ngFor="let movie of list">
       <mat-card-header class="mat-head">
         <h3 class="card-title">{{movie.title}}</h3>
       </mat-card-header>
       <img mat-card-image [src]="urlPath+movie.poster_path" alt="" class="imagenes">
       <mat-card-actions class="boton-borrar">
-      <button mat-raised-button class="estilo-letra boton-borrar-abajo" (click)="removeItem(movie)">Borrar</button>
+      <button mat-raised-button class="estilo-letra boton-borrar-abajo" (click)="removeItem(movie.id)">Borrar</button>
       </mat-card-actions>
       </mat-card>
     </div>
@@ -16,5 +16,5 @@
     <button type="button" class="estilo-letra cartelera color-cartelera estilo-letra" (click)="returnToBillboard()">Volver a Cartelera</button>
     </mat-card-actions>
     <mat-card-actions class="vaciar">  
-    <button type="button" class="estilo-letra vaciar color-vaciar estilo-letra" (click)="clearCarrito()">Vaciar Carrito</button>
+    <button type="button" class="estilo-letra vaciar color-vaciar estilo-letra" (click)="clearCart()">Vaciar Carrito</button>
     </mat-card-actions>
