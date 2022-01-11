@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MovieService } from 'src/app/features/movies/services/movies.service';
 import { MovieAPI } from 'src/app/models/movieAPI.model';
 import { CartService } from 'src/app/services/cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -39,11 +40,13 @@ export class CartComponent implements OnInit {
         this.list = resp
       }))  
     })
+    Swal.fire('Be careful!', 'You delete the movie!', 'error');  
   }
   
   clearCart(){
     this.subscription.add(this.cartService.clear().subscribe(resp => 
       this.list = resp));
+      Swal.fire('Well done!', 'You clear the cart!', 'success');
   }
 
 
@@ -55,9 +58,4 @@ export class CartComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-    /*
-  clearCarrito(){
-    this.cartMovies = this.cartService.clear();
-  }
-  */
 }

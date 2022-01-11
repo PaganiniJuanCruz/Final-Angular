@@ -8,13 +8,13 @@
       </mat-card-header>
       <img mat-card-image [src]="urlPath+movie.poster_path" alt="" class="imagenes">
       <mat-card-actions class="boton-borrar">
-      <button mat-raised-button class="estilo-letra boton-borrar-abajo" (click)="removeItem(movie.id)">Borrar</button>
+      <button mat-raised-button class="estilo-letra boton-borrar-abajo" (click)="removeItem(movie.id)">Delete</button>
       </mat-card-actions>
       </mat-card>
     </div>
     <mat-card-actions class="cartelera">
-    <button type="button" class="estilo-letra cartelera color-cartelera estilo-letra" (click)="returnToBillboard()">Volver a Cartelera</button>
+    <button mat-stroked-button class="estilo-letra cartelera color-cartelera" (click)="returnToBillboard()">Return to Billboard</button>
     </mat-card-actions>
     <mat-card-actions class="vaciar">  
-    <button type="button" class="estilo-letra vaciar color-vaciar estilo-letra" (click)="clearCart()">Vaciar Carrito</button>
+    <button mat-stroked-button class="estilo-letra vaciar color-vaciar" (click)="clearCart()">Clear Cart</button>
     </mat-card-actions>

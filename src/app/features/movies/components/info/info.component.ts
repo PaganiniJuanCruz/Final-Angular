@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MovieAPI } from 'src/app/models/movieAPI.model';
 import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from '../../services/movies.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -42,13 +43,11 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.cartService.addMovie(id, title, poster_path)
     .subscribe(resp => {
       console.log(resp);
-      alert("MOVIE IN CART")
+      Swal.fire('Well done!', 'Movie added to cart!', 'success');
     });
   }
-
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 
 } 
-

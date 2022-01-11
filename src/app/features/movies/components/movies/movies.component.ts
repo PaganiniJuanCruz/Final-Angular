@@ -35,9 +35,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
       }));
   }
 
+  
   addMovie(){
-    console.log(this.movie);
-    
     const id = this.movie.id;
     const title = this.movie.title;
     const poster_path = this.movie.poster_path;
@@ -49,6 +48,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
     });
   }
   
+
   navigateToDetail(id: number) {
     this.router.navigate(['movies', id]);
   }
