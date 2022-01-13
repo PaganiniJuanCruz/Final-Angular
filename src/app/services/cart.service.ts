@@ -20,9 +20,11 @@ export class CartService {
     title,
     poster_path
     })
+
   }
   
   getList():Observable<any>{
+    
     return this.httpClient.get<any[]>(this.url);
   }
 

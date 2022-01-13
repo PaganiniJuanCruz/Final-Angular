@@ -12,12 +12,20 @@
   margin-top: 40px;
 }
 
-.carrito:hover{
+.description:hover{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 17px;
   background-color: bisque;
   box-shadow: 0 0 5px bisque, 0 0 25px bisque, 0 0 50px bisque, 0 0 200px bisque;
+  display: flex;
+  justify-content: center;
 }
+
+.centrado{
+  display: flex;
+  justify-content: center;
+}
+
 
 .matt-card{
   width: 16rem;

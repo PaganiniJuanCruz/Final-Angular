@@ -9,11 +9,8 @@
     <mat-card-content>
       <p class="card-text release">Release Date: {{movie.release_date}}</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button class="carrito" (click)="navigateToDetail(movie.id)">Description</button>
-    
-      <button mat-raised-button class="carrito"(click)="addMovie()">Add to Cart</button>
-  
+    <mat-card-actions class="centrado">
+      <button mat-raised-button class="description" (click)="navigateToDetail(movie.id)">Description</button>
     </mat-card-actions>    
   </mat-card>
 </div>
