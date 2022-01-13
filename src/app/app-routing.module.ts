@@ -8,11 +8,11 @@ import { ProtectedGuard } from './guard/protected.guard';
 const routes: Routes = [
   {
     path:'movies',
+    canActivate: [ProtectedGuard],
     loadChildren: () => import('./features/movies/movies.module').then(m => m.MoviesModule) 
   },
   {
     path: 'login',
-    canActivate: [ProtectedGuard],
     component: LoginComponent
   },
   {
