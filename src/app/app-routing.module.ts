@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminRoleGuard } from './guard/admin-role.guard';
 import { ProtectedGuard } from './guard/protected.guard';
 
 const routes: Routes = [
   {
     path:'movies',
-    canActivate: [ProtectedGuard],
+    canActivate: [ProtectedGuard, AdminRoleGuard],
     loadChildren: () => import('./features/movies/movies.module').then(m => m.MoviesModule) 
   },
   {

@@ -30,6 +30,7 @@ export class LoginService {
           const decodedToken: any = jwt_decode(this.token);
           this.user = decodedToken?.user;
           this.userName = decodedToken?.userName;
+          this.role = decodedToken?.role;
           return true;
         }else{
           this.token = null;
