@@ -97,8 +97,7 @@ export class CartService {
     return this.httpClient.delete<any>(this.url + '?id=' + movieId);
   }
 
-  clear():Observable<any[]>{
-      return this.httpClient.get<any[]>(`${this.url}/clear`)
+  clear(){
+    return this.httpClient.get<any>(`${this.url}/clear`)
   }
-
 }

@@ -65,14 +65,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { CartItem } from './cart.model';
 import { CartState } from './store/cart-store.model';
-import { cartDeleteItem } from './store/cart.action';
+import { cartClear, cartDeleteItem } from './store/cart.action';
 
 
-import { cartItemsSelector, cartStateSelector } from './store/cart.selector';
+import { cartItemsSelector } from './store/cart.selector';
 
 
 @Component({
@@ -95,9 +94,8 @@ export class CartComponent implements OnInit {
   //  this.store.dispatch(AppSetTitle({title: 'Cart'}));
 
     this.cartItems$ = this.store.pipe(
-      select(cartItemsSelector)
-      // ,
-      // tap(data => console.log(data))
+      select(cartItemsSelector),
+      tap(data => console.log(data)),
     );
   }
 
@@ -113,8 +111,9 @@ export class CartComponent implements OnInit {
   }
 
   clearCart() {
-    //this.store.dispatch(cartClear());
-   
+    this.store.dispatch(cartClear())
+    this.cartItems$ = this.store.pipe(
+    select(cartItemsSelector));
   }
 
   returnToBillboard(){
