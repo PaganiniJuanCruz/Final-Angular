@@ -1,10 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { MovieAPI } from 'src/app/models/movieAPI.model';
 import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from '../../services/movies.service';
 import Swal from 'sweetalert2';
+import { select, Store } from '@ngrx/store';
+import { CartState } from 'src/app/components/cart/store/cart-store.model';
+import { CartItem } from 'src/app/components/cart/cart.model';
+import { cartItemsSelector } from 'src/app/components/cart/store/cart.selector';
+import { cartAddItem } from 'src/app/components/cart/store/cart.action';
 
 
 
@@ -14,7 +19,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit, OnDestroy {
-  
+  cartItems$!: Observable<CartItem[]>;
+
   movie: MovieAPI | any;
 
   private subscription: Subscription | undefined;
@@ -25,6 +31,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private moviesService: MovieService,
     private cartService: CartService,
+    private store: Store<CartState>
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +40,11 @@ export class InfoComponent implements OnInit, OnDestroy {
     .subscribe(resp => {this.movie = resp
     console.log(this.movie);
   });
+    this.cartItems$ = this.store.pipe(
+    select(cartItemsSelector),
+    tap(data => console.log(data))
+  );
+  
   }
 
   addMovie(){
@@ -40,14 +52,15 @@ export class InfoComponent implements OnInit, OnDestroy {
     const title = this.movie.title;
     const poster_path = this.movie.poster_path;
 
-    this.cartService.addMovie(id, title, poster_path)
-    .subscribe(resp => {
-      console.log(resp);
-      Swal.fire('Well done!', 'Movie added to cart!', 'success');
-    });
+    const item: CartItem = { id, title, poster_path};
+    //  this.idSeed++;
+      this.store.dispatch(cartAddItem({ id,title,poster_path }));
+      Swal.fire('Congrats!', 'You added the movie!', 'success');
+      console.log(item);
   }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 
-} 
+}
+
